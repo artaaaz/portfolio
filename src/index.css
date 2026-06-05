@@ -1,13 +1,266 @@
+/* Import Inter dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset font global */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f6f1; /* Cream clean ala macOS */
+  color: #1a1a1a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Hapus custom font class lama */
+.font-judul, .font-deskripsi, .font-deskripsi-bold {
+  font-family: 'Inter', sans-serif !important;
 }
+/* === BASE RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* === BODY + TEXTURE (FIXED) === */
+body {
+  font-family: 'Satoshi', sans-serif;
+  color: #1a1a1a;
+  background-color: #f4f1ea;
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* Texture Overlay - PASTIKAN FILE t.png ADA DI public/image/ */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* ✅ PATH YANG BENAR - GANTI SESUAI NAMA FILE LU */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* === GRID OVERLAY CLASS === */
+.grid-overlay {
+  mix-blend-mode: multiply;
+  opacity: 100;
+}
+
+/* === GRID PAPER === */
+.grid-paper {
+  background-image: 
+    linear-gradient(rgba(255, 0, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 4, 0, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-color: #ff0000;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+
+.grid-paper::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 4, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(131, 21, 20, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid-paper > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Grid Dark untuk Running Text */
+.grid-paper-dark {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-color: #831514;
+}
+
+/* Script Font Class */
+.script-font {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+/* === MODERN CARD === */
+.modern-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.modern-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(131, 21, 20, 0.15);
+  border-color: rgba(131, 21, 20, 0.2);
+}
+
+/* === ANIMATIONS === */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-fade-in-left {
+  opacity: 0;
+  animation: fadeInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 10s linear infinite;
+  width: max-content;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* === CUSTOM COLORS === */
+.text-custom-red { color: #831514; }
+.bg-custom-red { background-color: #831514; }
+.bg-brutal-red { background-color: #dc2626; }
+
+/* === TYPOGRAPHY === */
+.heading-script {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.body-text {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* Section Spacing */
+.section-modern {
+  padding: 80px 0;
+}
+@media (min-width: 768px) {
+  .section-modern { padding: 120px 0; }
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #f4f1ea; }
+::-webkit-scrollbar-thumb {
+  background: #831514;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover { background: #5a0e0e; }
+
+/* === TEXT SELECTION === */
+::selection {
+  background: #831514;
+  color: white;
+}
+
+/* === SMOOTH TRANSITIONS === */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+/* === GRAIN OVERLAY === */
+.grain-overlay::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* === PHOTO SLIDE ANIMATIONS === */
+@keyframes photoSlide1 {
+  0%, 30% { transform: translateX(100%); opacity: 0; z-index: 1; }
+  10%, 20% { transform: translateX(0); opacity: 1; z-index: 3; }
+  33.33%, 100% { transform: translateX(-100%); opacity: 0; z-index: 1; }
+}
+@keyframes photoSlide2 {
+  0%, 30% { transform: translateY(100%); opacity: 0; z-index: 1; }
+  43.33%, 53.33% { transform: translateY(0); opacity: 1; z-index: 3; }
+  66.66%, 100% { transform: translateY(-100%); opacity: 0; z-index: 1; }
+}
+@keyframes photoSlide3 {
+  0%, 66.66% { transform: translateX(100%); opacity: 0; z-index: 1; }
+  76.66%, 86.66% { transform: translateX(0); opacity: 1; z-index: 3; }
+  100% { transform: translateX(0); opacity: 1; z-index: 3; }
+}
+.animate-photo-slide-1 { animation: photoSlide1 12s infinite; }
+.animate-photo-slide-2 { animation: photoSlide2 12s infinite; }
+.animate-photo-slide-3 { animation: photoSlide3 12s infinite; }
+
+@keyframes dotActive1 {
+  0%, 30% { background-color: rgba(131, 21, 20, 1); transform: scale(1.2); }
+  33.33%, 100% { background-color: rgba(255, 255, 255, 0.5); transform: scale(1); }
+}
+@keyframes dotActive2 {
+  0%, 30% { background-color: rgba(255, 255, 255, 0.5); transform: scale(1); }
+  43.33%, 53.33% { background-color: rgba(131, 21, 20, 1); transform: scale(1.2); }
+  66.66%, 100% { background-color: rgba(255, 255, 255, 0.5); transform: scale(1); }
+}
+@keyframes dotActive3 {
+  0%, 66.66% { background-color: rgba(255, 255, 255, 0.5); transform: scale(1); }
+  76.66%, 86.66% { background-color: rgba(131, 21, 20, 1); transform: scale(1.2); }
+  100% { background-color: rgba(131, 21, 20, 1); transform: scale(1.2); }
+}
+.animate-dot-1 { animation: dotActive1 12s infinite; }
+.animate-dot-2 { animation: dotActive2 12s infinite; }
+.animate-dot-3 { animation: dotActive3 12s infinite; }
