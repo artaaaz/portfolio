@@ -18,6 +18,10 @@ import ContactForm from './components/ContactForm';
 import Loader from './components/Loader';
 import NotFound from './components/NotFound';
 import Testimonials from './components/Testimonials';
+import Services from './components/Services';
+import Tools from './components/Tools';
+import Inside from './components/Inside';
+import BrandingCover from './components/BrandingCover';
 
 // Main Content Component
 function AppContent() {
@@ -58,13 +62,16 @@ function AppContent() {
           </svg>
 
           {/* CONTENT */}
-          <div className="relative z-10">
+          <div className="relative z-10"> 
             <Hero />
 
             {/* HANYA 2 RUNNING TEXT (POSTER & WORK) */}
             <About />
-            <RunningText text="poster" />
-            <GifSection />
+            {/*<RunningText text="poster" />*/}
+            <Services />
+            <Tools/>
+            <Inside />
+            <BrandingCover/>
             <PosterShowcase />
 
             <SocialMedia />
