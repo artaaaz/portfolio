@@ -22,6 +22,7 @@ import Services from './components/Services';
 import Tools from './components/Tools';
 import Inside from './components/Inside';
 import BrandingCover from './components/BrandingCover';
+import MentionShowcase from './components/MentionShowcase';
 
 // Main Content Component
 function AppContent() {
@@ -72,8 +73,8 @@ function AppContent() {
             <Tools/>
             <Inside />
             <BrandingCover/>
+            <MentionShowcase />
             <PosterShowcase />
-
             <SocialMedia />
             <WebDevShowcase />
             <UIUXShowcase />

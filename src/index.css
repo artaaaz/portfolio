@@ -41,26 +41,6 @@ body {
   position: relative;
 }
 
-/* Texture Overlay - PASTIKAN FILE t.png ADA DI public/image/ */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  
-  /* ✅ PATH YANG BENAR - GANTI SESUAI NAMA FILE LU */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  
-  opacity: 0.4;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* === GRID OVERLAY CLASS === */
 .grid-overlay {
