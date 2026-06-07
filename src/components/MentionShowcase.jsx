@@ -45,65 +45,33 @@ const MentionShowcase = () => {
             <div className="flex-1"></div>
 
             {/* Right - Bullet Points */}
-            <div className="flex-1 md:max-w-md">
-              <ul className="space-y-3">
+            <div className="flex-5 md:max-w-md">
+              <ul className="space-y-1">
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-[#1a1a1a] rounded-full"></div>
-                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">full identity</p>
+                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">Brand Identity Kit</p>
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-[#1a1a1a] rounded-full"></div>
-                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">full pitch deck</p>
+                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">Social Media Kit</p>
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-[#1a1a1a] rounded-full"></div>
-                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">social media</p>
+                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">Educational Publication</p>
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-[#1a1a1a] rounded-full"></div>
-                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">brand assets</p>
+                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">Eventual & Celebration Poster</p>
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-[#1a1a1a] rounded-full"></div>
-                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">website</p>
+                  <p className="text-lg md:text-xl font-bold text-[#1a1a1a] font-['Inter']">interactive UI/UX design</p>
                 </li>
               </ul>
             </div>
           </motion.div>
 
         </div>
-      </section>
-
-      {/* === SECTION 2: BACKGROUND IMAGE ONLY (Full Screen) === */}
-      <section className="relative w-full h-screen overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="w-full h-full"
-        >
-          <img 
-            src="/image/rectangle.png" 
-            alt="Mention Background"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </section>
-
-      {/* === SECTION 3: LOGO IMAGE ONLY (Full Screen) === */}
-      <section className="relative w-full h-screen bg-white flex items-center justify-center overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="w-full h-full flex items-center justify-center px-8"
-        >
-          <img 
-            src="/image/mention.png" 
-            alt="Mention Logo"
-            className="w-full h-auto max-w-4xl object-contain"
-          />
-        </motion.div>
       </section>
     </>
   );
