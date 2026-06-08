@@ -1,34 +1,33 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const MentionVisuals = () => {
-    return (
-<section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-
-    {/* Background Image (Kuning Gradient) */}
-    <div className="absolute inset-0">
-        <img
-            src="/image/Rectangle 2.png"
-            alt="Mention Background"
-            className="w-full h-full object-cover"
-        />
-    </div>
-
-    {/* Logo di Atas Background (Center) */}
-    <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 w-full h-full flex items-center justify-center px-8"
+  return (
+    <section 
+      className="relative w-screen h-screen flex items-center justify-center m-0 p-0 overflow-hidden select-none"
+      style={{
+        // Gradient dari hijau tua/gelap ke kuning terang khas mockup
+        background: 'radial-gradient(circle at 80% 20%, #FFF000 0%, #000 60%, #1E2200 100%)',
+      }}
     >
-        <img
-            src="/image/mention.png"
-            alt="Mention Logo"
-            className="w-full h-auto max-w-4xl object-contain"
-        />
-    </motion.div>
+      {/* === EFEK NOISE / GRAIN (OPSIONAL) === */}
+      {/* Menggunakan overlay opacity kecil untuk meniru tekstur kertas/grain di gambar */}
+      <div 
+        className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+        }}
+      />
 
-</section>
+      {/* === KONTEN UTAMA: LOGO MENTION === */}
+      <div className="relative z-10 flex items-center justify-center px-6 w-full max-w-4xl">
+        <img 
+          src="/image/mention.png" // <--- Ganti dengan path file logo kamu (bisa .png atau .svg)
+          alt="Mention Logo" 
+          className="w-[75%] sm:w-[60%] md:w-[50%] lg:w-[45%] h-auto object-contain drop-shadow-lg animate-fade-in"
+        />
+      </div>
+
+    </section>
   );
 };
 

@@ -24,6 +24,8 @@ import Inside from './components/Inside';
 import BrandingCover from './components/BrandingCover';
 import MentionShowcase from './components/MentionShowcase';
 import MentionVisuals from './components/MentionVisuals';
+import MentionWireframeSection from './components/MentionWireFrameSection';
+import SPMB from './components/SPMB';
 
 // Main Content Component
 function AppContent() {
@@ -77,6 +79,8 @@ function AppContent() {
             <MentionShowcase />
             <MentionVisuals/>
             <GifSection/>
+            <MentionWireframeSection/>
+            <SPMB/>
             <PosterShowcase />
             <SocialMedia />
             <WebDevShowcase />
