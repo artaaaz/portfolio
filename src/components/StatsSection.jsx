@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 const StatsSection = () => {
   // 🎛️ KONTROL POSISI TEKS "THROUGH..."
   const descPosition = {
-    top: "auto",
+    top: "20", // Biarkan auto untuk default, atau atur ke "20%", "100px", dll.
     right: "38%",
-    bottom: "2%",
+    bottom: "3%",
     left: "auto",
   };
 
@@ -14,7 +14,7 @@ const StatsSection = () => {
   const labelPosition = {
     top: "17%",        // Geser dari ATAS (contoh: "0", "50px", "5%")
     right: "84%",      // Geser dari KANAN (contoh: "0", "100px", "10%")
-    bottom: "20%",
+    bottom: "3%",
     left: "auto",
   };
 

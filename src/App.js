@@ -28,6 +28,8 @@ import MentionWireframeSection from './components/MentionWireFrameSection';
 import SPMB from './components/SPMB';
 import InstagramGridShowcase from './components/StatsSection';
 import AwardsSection from './components/AwardSection';
+import AppsShowcase from './components/AppsShowcase';
+import B from './components/B';
 
 // Main Content Component
 function AppContent() {
@@ -83,6 +85,8 @@ function AppContent() {
             <GifSection/>
             <InstagramGridShowcase/>
             <AwardsSection/>
+            <AppsShowcase/>
+            <B/>
             <SPMB/>
             <PosterShowcase />
             <SocialMedia />
