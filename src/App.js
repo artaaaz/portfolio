@@ -3,21 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import Components
 import Hero from './components/Hero';
+import HeroSection from './components/HeroSection';
+import FooterSection from './components/FooterSection';
 import About from './components/About';
 import Work from './components/Work';
-import Footer from './components/Footer';
-import RunningText from './components/RunningText';
 import GifSection from './components/GifSection';
-import PosterShowcase from './components/PosterShowcase';
 import BrandShowcase from './components/BrandShowcase';
-import SocialMedia from './components/SocialMedia';
-import WebDevShowcase from './components/WebDevShowcase';
-import UIUXShowcase from './components/UIUXShowcase';
-import Gallery from './components/Gallery';
-import ContactForm from './components/ContactForm';
 import Loader from './components/Loader';
 import NotFound from './components/NotFound';
-import Testimonials from './components/Testimonials';
 import Services from './components/Services';
 import Tools from './components/Tools';
 import Inside from './components/Inside';
@@ -25,11 +18,11 @@ import BrandingCover from './components/BrandingCover';
 import MentionShowcase from './components/MentionShowcase';
 import MentionVisuals from './components/MentionVisuals';
 import MentionWireframeSection from './components/MentionWireFrameSection';
-import SPMB from './components/SPMB';
-import InstagramGridShowcase from './components/StatsSection';
 import AwardsSection from './components/AwardSection';
 import AppsShowcase from './components/AppsShowcase';
 import B from './components/B';
+import ProjectHighlights from './components/ProjectHighlights';
+import Showreel from './components/Showreel';
 
 // Main Content Component
 function AppContent() {
@@ -47,18 +40,6 @@ function AppContent() {
       {!isLoading && (
         <div className="grain-overlay min-h-screen bg-transparent relative z-0">
 
-          {/* GRID OVERLAY */}
-          <div
-            className="fixed inset-0 pointer-events-none z-0 opacity-20"
-            style={{
-              backgroundImage: `
-                                linear-gradient(to right, rgba(131, 21, 20, 0.15) 1px, transparent 1px),
-                                linear-gradient(to bottom, rgba(131, 21, 20, 0.15) 1px, transparent 1px)
-                            `,
-              backgroundSize: '24px 24px',
-            }}
-          />
-
           {/* SVG Filter */}
           <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
             <defs>
@@ -73,9 +54,7 @@ function AppContent() {
           <div className="relative z-10"> 
             <Hero />
 
-            {/* HANYA 2 RUNNING TEXT (POSTER & WORK) */}
             <About />
-            {/*<RunningText text="poster" />*/}
             <Services />
             <Tools/>
             <Inside />
@@ -83,40 +62,11 @@ function AppContent() {
             <MentionShowcase />
             <MentionVisuals/>
             <GifSection/>
-            <InstagramGridShowcase/>
             <AwardsSection/>
             <AppsShowcase/>
-            <B/>
-            <SPMB/>
-            <PosterShowcase />
-            <SocialMedia />
-            <WebDevShowcase />
-            <UIUXShowcase />
-
-            {/* NEW: Testimonials Section */}
-            <Testimonials />
-
-            <RunningText text="gallery" />
-            <Gallery />
-
-            {/* Contact & CV Section */}
-            <section id="contact" className="py-20 bg-transparent">
-              <div className="max-w-[1400px] mx-auto px-6 text-center">
-                <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#831514] mb-4">
-                  get in touch
-                </h2>
-                <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-                  Got a project in mind or just want to say hi?
-                  Drop a message or grab my CV.
-                </p>
-
-                <ContactForm />
-
-                
-              </div>
-            </section>
-
-            <Footer />
+            
+            <ProjectHighlights />
+            <Showreel />
           </div>
         </div>
       )}

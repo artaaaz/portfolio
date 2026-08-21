@@ -3,7 +3,7 @@ import React from 'react';
 const GifSection = () => {
   return (
     <section 
-      className="relative w-screen h-screen text-white font-sans flex select-none overflow-hidden p-8 md:p-16"
+      className="relative w-full h-screen text-white font-sans flex select-none overflow-hidden p-8 md:p-16"
       style={{
         // Menggunakan hitam pekat/solid dengan sedikit nuansa charcoal premium
         backgroundColor: '#0A0A0A',

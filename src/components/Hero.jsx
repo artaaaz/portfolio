@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-screen bg-white overflow-hidden">
+    <section className="relative w-full min-h-screen bg-white">
       {/* TOP LEFT - Info */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="absolute top-8 left-8 md:top-12 md:left-12 lg:top-16 lg:left-16"
+        className="absolute top-8 left-8 md:top-12 md:left-12 lg:top-16 lg:left-16 z-10"
       >
         {/* Logo/Globe Icon */}
         <div className="w-8 h-8 mb-4">
@@ -45,7 +45,7 @@ const Hero = () => {
       </div>
 
       {/* BOTTOM ROW */}
-      <div className="absolute bottom-0 left-0 right-0 px-8 md:px-12 lg:px-16 pb-8 md:pb-12 lg:pb-16">
+      <div className="absolute bottom-0 left-0 right-0 px-8 md:px-12 lg:px-16 pb-8 md:pb-12 lg:pb-16 z-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           {/* Left - Roles */}
           <motion.div

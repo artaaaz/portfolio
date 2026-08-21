@@ -27,7 +27,7 @@ const MentionWireframeSection = () => {
       {/* Ganti 'max-w-7xl' kemarin menjadi 'max-w-[92vw]' atau 'max-w-full px-4'. 
           Ini bakal maksa barisan 4 kolom lu melebar hampir mentok ke ujung layar monitor! */}
       <motion.div 
-        className="w-full max-w-[92vw] xl:max-w-screen-2xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 z-10 py-12"
+        className="w-full max-w-full xl:max-w-screen-2xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 z-10 py-12"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}

@@ -3,7 +3,7 @@ import React from 'react';
 const MentionVisuals = () => {
   return (
     <section 
-      className="relative w-screen h-screen flex items-center justify-center m-0 p-0 overflow-hidden select-none"
+      className="relative w-full h-screen flex items-center justify-center m-0 p-0 overflow-hidden select-none"
       style={{
         // Gradient dari hijau tua/gelap ke kuning terang khas mockup
         background: 'radial-gradient(circle at 80% 20%, #FFF000 0%, #000 60%, #1E2200 100%)',

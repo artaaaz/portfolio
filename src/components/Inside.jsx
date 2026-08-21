@@ -1,15 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Inside = () => {
-  // Data list yang disesuaikan agar to-the-point dan berbobot
-  const items = [
-    { num: '1', title: 'UI/UX Case ' },
-    { num: '2', title: 'Editorial & Graphics' },
-    { num: '3', title: 'Digital Branding' },
-    { num: '4', title: 'Web Implementation' },
-  ];
+const items = [
+  { num: '01', title: 'UI/UX DESIGN' },
+  { num: '02', title: 'WEB DEVELOPMENT' },
+  { num: '03', title: 'VIDEO PRODUCTION' },
+  { num: '04', title: 'EDITORIAL DESIGN' },
+];
 
+const Inside = () => {
   return (
     <section id="inside" className="relative w-full min-h-screen bg-white px-8 md:px-16 lg:px-24 py-16 md:py-24 flex flex-col justify-between">
       
@@ -53,17 +52,17 @@ const Inside = () => {
               {/* Row Content */}
               <div className="flex justify-between items-end pb-3 pt-6 w-full text-[#1a1a1a]">
                 {/* Number */}
-                <span className="text-xl md:text-2xl font-bold tracking-tight transition-transform duration-300 group-hover:translate-x-1">
+                <span className="text-xl md:text-2xl font-bold tracking-tight transition-all duration-300 group-hover:translate-x-2 group-hover:text-[#2145ff]">
                   {item.num}
                 </span>
                 {/* Title */}
-                <span className="text-2xl md:text-4xl font-bold tracking-tight text-right transition-colors duration-300 group-hover:text-gray-500">
+                <span className="text-2xl md:text-4xl font-bold tracking-tight text-right transition-all duration-300 group-hover:text-[#2145ff]">
                   {item.title}
                 </span>
               </div>
               
-              {/* Divider Line (Matching image_7bebdd.png) */}
-              <div className="w-full h-[2px] bg-[#1a1a1a] origin-left scale-x-100 transition-transform duration-300 group-hover:bg-gray-400" />
+              {/* Divider Line */}
+              <div className="w-full h-[2px] bg-[#1a1a1a] origin-left scale-x-100 transition-all duration-300 group-hover:bg-[#2145ff]" />
             </motion.div>
           ))}
         </div>

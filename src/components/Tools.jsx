@@ -1,5 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Marquee from './ui/marquee';
+
+const tools = [
+  { name: "React", icon: "⚛️" },
+  { name: "Next.js", icon: "▲" },
+  { name: "TypeScript", icon: "TS" },
+  { name: "Tailwind", icon: "🌊" },
+  { name: "GSAP", icon: "◈" },
+  { name: "Docker", icon: "🐳" },
+  { name: "Linux", icon: "🐧" },
+  { name: "Figma", icon: "🎨" },
+  { name: "Illustrator", icon: "✏️" },
+  { name: "Photoshop", icon: "🖼️" },
+  { name: "VS Code", icon: "💻" },
+  { name: "Canva", icon: "🖌️" },
+  { name: "CapCut", icon: "✂️" },
+];
+
+const ToolItem = ({ name, icon }) => (
+  <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white text-black whitespace-nowrap">
+    <span className="text-sm">{icon}</span>
+    <span className="text-sm font-medium">{name}</span>
+  </div>
+);
 
 const Tools = () => {
   return (
@@ -43,14 +67,34 @@ const Tools = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-2xl font-['Inter']"
           >
-            <strong className="font-bold text-[#1a1a1a]">
-              
-            </strong>{' '}
             I use tools like <strong className="font-bold text-[#1a1a1a]">
                 Visual Studio Code, Figma, Adobe Photoshop, Illustrator, Affinity, Canva, and CapCut. </strong>{' '}
               These tools help me <strong className="font-bold text-[#1a1a1a]">build web interfaces, create graphic designs, and edit videos.</strong>{' '}
           </motion.p>
         </div>
+
+        {/* MARQUEE SECTION */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="w-full overflow-hidden"
+        >
+          <div className="mb-3">
+            <Marquee pauseOnHover direction="left" className="[--duration:25s]">
+              {tools.map((tool, idx) => (
+                <ToolItem key={idx} {...tool} />
+              ))}
+            </Marquee>
+          </div>
+          <div>
+            <Marquee pauseOnHover direction="right" className="[--duration:30s]">
+              {[...tools].reverse().map((tool, idx) => (
+                <ToolItem key={idx} {...tool} />
+              ))}
+            </Marquee>
+          </div>
+        </motion.div>
 
       </div>
 

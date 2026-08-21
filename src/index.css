@@ -1,4 +1,4 @@
-/* Import Inter dari Google Fonts */
+  /* Import Inter dari Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -28,6 +28,7 @@ body {
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /* === BODY + TEXTURE (FIXED) === */
@@ -39,6 +40,7 @@ body {
   min-height: 100vh;
   width: 100%;
   position: relative;
+  max-width: 100%;
 }
 
 
@@ -46,38 +48,6 @@ body {
 .grid-overlay {
   mix-blend-mode: multiply;
   opacity: 100;
-}
-
-/* === GRID PAPER === */
-.grid-paper {
-  background-image: 
-    linear-gradient(rgba(255, 0, 0, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 4, 0, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-color: #ff0000;
-  background-attachment: fixed;
-  min-height: 100vh;
-  position: relative;
-}
-
-.grid-paper::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(rgba(255, 4, 0, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(131, 21, 20, 0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.grid-paper > * {
-  position: relative;
-  z-index: 1;
 }
 
 /* Grid Dark untuk Running Text */
@@ -193,6 +163,11 @@ body {
 /* === SMOOTH TRANSITIONS === */
 * {
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+/* === PROJECT HIGHLIGHTS - DISABLE CSS TRANSITIONS TO PREVENT GSAP CONFLICTS === */
+.project-highlight-card {
+  transition: none !important;
 }
 
 /* === GRAIN OVERLAY === */
