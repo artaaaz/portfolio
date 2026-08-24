@@ -3,12 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import Components
 import Hero from './components/Hero';
-import HeroSection from './components/HeroSection';
-import FooterSection from './components/FooterSection';
 import About from './components/About';
-import Work from './components/Work';
-import GifSection from './components/GifSection';
-import BrandShowcase from './components/BrandShowcase';
 import Loader from './components/Loader';
 import NotFound from './components/NotFound';
 import Services from './components/Services';
@@ -17,12 +12,12 @@ import Inside from './components/Inside';
 import BrandingCover from './components/BrandingCover';
 import MentionShowcase from './components/MentionShowcase';
 import MentionVisuals from './components/MentionVisuals';
-import MentionWireframeSection from './components/MentionWireFrameSection';
 import AwardsSection from './components/AwardSection';
 import AppsShowcase from './components/AppsShowcase';
-import B from './components/B';
 import ProjectHighlights from './components/ProjectHighlights';
+import DesignWorks from './components/DesignWorks';
 import Showreel from './components/Showreel';
+import GifSection from './components/GifSection';
 
 // Main Content Component
 function AppContent() {
@@ -51,21 +46,20 @@ function AppContent() {
           </svg>
 
           {/* CONTENT */}
-          <div className="relative z-10"> 
+          <div className="relative z-10">
             <Hero />
 
             <About />
             <Services />
-            <Tools/>
+            <Tools />
             <Inside />
-            <BrandingCover/>
+            <BrandingCover />
             <MentionShowcase />
-            <MentionVisuals/>
-            <GifSection/>
-            <AwardsSection/>
-            <AppsShowcase/>
-            
-            <ProjectHighlights />
+            <MentionVisuals />
+            <GifSection />
+            <AwardsSection />
+            <AppsShowcase />
+            <DesignWorks />
             <Showreel />
           </div>
         </div>

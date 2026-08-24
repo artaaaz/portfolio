@@ -5,7 +5,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative w-full min-h-screen bg-white py-16 md:py-24 px-6 md:px-12 lg:px-20"
+      className="relative w-full min-h-screen bg-white py-16 md:py-24 px-8 md:px-16 lg:px-24"
     >
       {/* MAIN CONTENT - Full Width Layout */}
       <div className="max-w-[1800px] mx-auto">
@@ -86,7 +86,8 @@ const About = () => {
             </div>
 
             {/* Phone - Center */}
-            <div className="text-center">
+            {/* Phone - Center */}
+            <div className="md:text-center text-left">
               <p className="text-xs text-gray-500 mb-1">Phone</p>
               <a
                 href="tel:+6288293657753"
@@ -97,7 +98,7 @@ const About = () => {
             </div>
 
             {/* Location - Far Right */}
-            <div className="text-right">
+            <div className="md:text-right text-left">
               <p className="text-xs text-gray-500 mb-1">Location</p>
               <span>Bogor, West Java</span>
             </div>

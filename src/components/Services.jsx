@@ -54,12 +54,12 @@ const Services = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-6 md:gap-0 w-full"
+          className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-6 md:gap-8 lg:gap-0 w-full flex-wrap"
         >
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] whitespace-nowrap">UI/UX Design</p>
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] whitespace-nowrap">Prototyping</p>
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] whitespace-nowrap">Frontend Web</p>
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] whitespace-nowrap">Video Editing</p>
+          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] text-center whitespace-normal lg:whitespace-nowrap">UI/UX Design</p>
+          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] text-center whitespace-normal lg:whitespace-nowrap">Prototyping</p>
+          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] text-center whitespace-normal lg:whitespace-nowrap">Frontend Web</p>
+          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] text-center whitespace-normal lg:whitespace-nowrap">Video Editing</p>
         </motion.div>
 
         {/* ROW 2: 3 Items (Otomatis Mengunci di Sela-Sela Baris Atas) */}
@@ -67,11 +67,11 @@ const Services = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col md:flex-row justify-center md:justify-around items-center gap-6 md:gap-0 w-full"
+          className="flex flex-col md:flex-row justify-center md:justify-around items-center gap-6 md:gap-8 lg:gap-0 w-full flex-wrap"
         >
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] whitespace-nowrap">Social Media Specialist</p>
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] whitespace-nowrap">Graphic Design</p>
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] whitespace-nowrap">Photo Manipulation</p>
+          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] text-center whitespace-normal lg:whitespace-nowrap">Social Media Specialist</p>
+          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] text-center whitespace-normal lg:whitespace-nowrap">Graphic Design</p>
+          <p className="text-2xl md:text-3xl font-bold tracking-tight text-[#1a1a1a] text-center whitespace-normal lg:whitespace-nowrap">Photo Manipulation</p>
         </motion.div>
 
       </div>

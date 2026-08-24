@@ -5,7 +5,7 @@ const AwardsSection = () => {
   const images = ["/image/gelo2.png", "/image/gelo.png", "/image/gelo1.png"];
 
   return (
-    <section className="relative w-full min-h-screen bg-[#0a0a00] px-8 py-20 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-[#0a0a00] px-8 md:px-16 lg:px-24 py-16 md:py-24 overflow-hidden">
       
       {/* 1. RUNNING TEXT SILANG ATAS - PASTI JALAN! */}
       <div className="absolute top-[20%] -left-[10%] rotate-[-5deg] w-[120%] pointer-events-none overflow-hidden">

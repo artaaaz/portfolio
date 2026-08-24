@@ -11,7 +11,7 @@ module.exports = {
         'brand-blue': '#2147ff',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
       },
       borderRadius: {
         'xl': '12px',

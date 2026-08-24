@@ -13,7 +13,7 @@ const AppsShowcase = () => {
       <div className="absolute inset-0 opacity-50 bg-[radial-gradient(circle_at_50%_50%,#FFE600_0%,transparent_70%)]"></div>
       
       {/* Container utama dengan ukuran yang lebih dominan */}
-      <div className="relative z-10 w-full max-w-[95rem] h-[85vh] flex items-center justify-center">
+      <div className="relative z-10 w-full max-w-[95rem] h-[40vh] sm:h-[60vh] md:h-[80vh] flex items-center justify-center">
         <img 
           src="/image/damn.png" 
           alt="Mention Apps Showcase" 

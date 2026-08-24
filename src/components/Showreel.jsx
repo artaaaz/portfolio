@@ -5,27 +5,42 @@ import { HeroVideoDialog } from "./ui/hero-video-dialog";
 const reelUrl = "https://youtu.be/2K3CYhc-ILQ?si=mCCnsWennNimFATx";
 
 const Showreel = () => {
+  const [isWideScreen, setIsWideScreen] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkWidth = () => {
+      setIsWideScreen(window.innerWidth >= 1660);
+    };
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
+
   return (
     <section className="relative w-full bg-[#163ce0] py-20 md:py-24 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex justify-center">
         <div className="relative inline-flex">
           {/* Decorative GIF — Left */}
-          <img
-            src="/videos/gif.gif"
-            alt=""
-            aria-hidden="true"
-            className="hidden md:block absolute top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 md:w-[300px] lg:w-[380px] xl:w-[450px] 2xl:w-[500px]"
-            style={{ right: "calc(100% + 24px)" }}
-          />
+          {isWideScreen && (
+            <img
+              src="/videos/gif.gif"
+              alt=""
+              aria-hidden="true"
+              className="absolute top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 w-[300px] lg:w-[350px] xl:w-[400px]"
+              style={{ right: "calc(100% + 24px)" }}
+            />
+          )}
 
           {/* Decorative GIF — Right */}
-          <img
-            src="/videos/gif.gif"
-            alt=""
-            aria-hidden="true"
-            className="hidden md:block absolute top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 md:w-[300px] lg:w-[380px] xl:w-[450px] 2xl:w-[500px]"
-            style={{ left: "calc(100% + 24px)" }}
-          />
+          {isWideScreen && (
+            <img
+              src="/videos/gif.gif"
+              alt=""
+              aria-hidden="true"
+              className="absolute top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 w-[300px] lg:w-[350px] xl:w-[400px]"
+              style={{ left: "calc(100% + 24px)" }}
+            />
+          )}
 
           {/* Video */}
           <motion.div

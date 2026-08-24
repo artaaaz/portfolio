@@ -1,6 +1,8 @@
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AnimatePresence } from "framer-motion";
+import ProjectModal from "./ProjectModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -8,6 +10,9 @@ const projects = [
   {
     title: "SPMB",
     subtitle: "School Admission Platform",
+    category: "Web Design & System Development",
+    tools: "React, GSAP, TailwindCSS, Figma",
+    year: "2026",
     description:
       "End-to-end digital platform for school admission management. Built a comprehensive design system, responsive UI/UX, and high-converting branding assets from concept to deployment.",
     image: "/projects/spmb.jpg",
@@ -15,6 +20,9 @@ const projects = [
   {
     title: "Mention",
     subtitle: "Landing Page & Branding",
+    category: "Branding & Social Media Kit",
+    tools: "Illustrator, Canva, Figma",
+    year: "2025",
     description:
       "Brand identity, presentation design, and digital publication layouts. Crafted a cohesive visual language across campaign materials, informational graphics, and celebration marketing.",
     image: "/projects/mention.jpg",
@@ -22,6 +30,9 @@ const projects = [
   {
     title: "Dashboard Sekolah",
     subtitle: "Management System",
+    category: "UI/UX Design & Dashboard Development",
+    tools: "React, TailwindCSS, Chart.js",
+    year: "2025",
     description:
       "Internal management platform for school administration, featuring student data management, scheduling, and reporting tools designed for efficiency and clarity.",
     image: "/projects/dashboard.jpg",
@@ -29,6 +40,9 @@ const projects = [
   {
     title: "Kredit Motor",
     subtitle: "Fintech Application",
+    category: "Fintech Mobile App Design",
+    tools: "Figma, Photoshop, CapCut",
+    year: "2025",
     description:
       "Fintech platform for motorcycle credit financing, streamlining loan applications, approval workflows, and payment tracking for dealers and customers.",
     image: "/projects/kredit.jpg",
@@ -38,25 +52,23 @@ const projects = [
 const ProjectHighlights = () => {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const cards = cardsRef.current;
-      if (!cards.length) return;
+    const cards = cardsRef.current;
+    if (!cards.length) return;
 
+    const mm = gsap.matchMedia();
+
+    // Desktop: Pin and animate card stack
+    mm.add("(min-width: 768px)", () => {
       const total = cards.length;
-      const isMobile = window.innerWidth < 768;
-      const offset = isMobile ? 16 : 24;
-
-      // Base y offsets for the stack (stable positions)
+      const offset = 24;
       const offsets = Array.from({ length: total }, (_, i) => i * offset);
 
-      // Set initial state: stable stacked positions
-      // Card 1: y: 0, z-index: 4
-      // Card 2: y: 24, z-index: 3
-      // Card 3: y: 48, z-index: 2
-      // Card 4: y: 72, z-index: 1
+      // Initial layout setup
       cards.forEach((card, i) => {
+        if (!card) return;
         gsap.set(card, {
           y: offsets[i],
           zIndex: total - i,
@@ -65,9 +77,6 @@ const ProjectHighlights = () => {
         });
       });
 
-      // Single timeline controlling the entire stack
-      // Each card gets its own segment (1/total of the timeline)
-      // This ensures the pin holds until ALL cards are done
       const segmentDuration = 1 / total;
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -81,11 +90,9 @@ const ProjectHighlights = () => {
         },
       });
 
-      // Sequential segments: each card slides off, remaining cards shift up
       for (let i = 0; i < total; i++) {
         const segStart = i * segmentDuration;
 
-        // Current card slides off (except the last one, which stays as final)
         if (i < total - 1) {
           tl.to(
             cards[i],
@@ -99,7 +106,6 @@ const ProjectHighlights = () => {
           );
         }
 
-        // Remaining cards shift up by one position
         for (let j = i + 1; j < total; j++) {
           const targetY = (j - i - 1) * offset;
           tl.to(
@@ -114,29 +120,36 @@ const ProjectHighlights = () => {
           );
         }
       }
-    }, sectionRef);
+    });
 
-    return () => ctx.revert();
+    // Mobile: Reset styles to let normal flow layout override GSAP
+    mm.add("(max-width: 767px)", () => {
+      cards.forEach((card) => {
+        if (card) gsap.set(card, { clearProps: "all" });
+      });
+    });
+
+    return () => mm.revert();
   }, []);
 
   return (
     <section ref={sectionRef} className="relative w-full bg-white">
-      <div className="h-screen flex items-center justify-center overflow-hidden">
-        <div className="relative w-full max-w-7xl h-[80vh] mx-6 md:mx-12">
+      <div className="min-h-screen md:h-screen flex items-center justify-center overflow-visible md:overflow-hidden py-12 md:py-0">
+        <div className="relative w-full max-w-7xl h-auto md:h-[80vh] mx-6 md:mx-12 flex flex-col gap-8 md:block">
           {projects.map((project, index) => (
             <div
               key={project.title}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="project-highlight-card absolute inset-0 rounded-[32px] overflow-hidden select-none bg-white"
+              className="project-highlight-card relative md:absolute md:inset-0 rounded-[24px] md:rounded-[32px] overflow-hidden select-none bg-white w-full h-auto md:h-full"
               style={{
                 willChange: "transform",
                 backfaceVisibility: "hidden",
               }}
             >
-              <div className="w-full h-full border border-neutral-200/80 rounded-[32px] overflow-hidden">
+              <div className="w-full h-full border border-neutral-200/80 rounded-[24px] md:rounded-[32px] overflow-hidden bg-white">
                 <div className="flex flex-col lg:flex-row h-full p-6 md:p-8 lg:p-10 gap-6 lg:gap-0">
                   {/* Left: Info — 45% */}
-                  <div className="lg:w-[45%] flex flex-col justify-center pr-0 lg:pr-10">
+                  <div className="lg:w-[45%] flex flex-col justify-center pr-0 lg:pr-10 mb-4 lg:mb-0">
                     {/* Number badge */}
                     <div className="flex items-center gap-3 mb-5">
                       <span className="text-[10px] font-mono text-neutral-400 tracking-[0.2em] uppercase">
@@ -161,6 +174,7 @@ const ProjectHighlights = () => {
                     <div className="mt-8">
                       <button
                         type="button"
+                        onClick={() => setSelectedProject(project)}
                         className="group inline-flex items-center gap-2 text-xs font-medium text-neutral-900 tracking-[0.15em] uppercase transition-all duration-500 hover:gap-4"
                       >
                         <span className="relative">
@@ -187,7 +201,7 @@ const ProjectHighlights = () => {
                   </div>
 
                   {/* Right: Image — 55% */}
-                  <div className="lg:w-[55%] h-full min-h-[200px] lg:min-h-0">
+                  <div className="lg:w-[55%] w-full h-[220px] sm:h-[320px] md:h-[400px] lg:h-full min-h-[220px] lg:min-h-0">
                     <div className="relative w-full h-full rounded-2xl overflow-hidden bg-neutral-100">
                       <img
                         src={project.image}
@@ -212,6 +226,13 @@ const ProjectHighlights = () => {
           ))}
         </div>
       </div>
+
+      {/* Detail Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

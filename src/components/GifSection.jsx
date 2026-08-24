@@ -3,9 +3,8 @@ import React from 'react';
 const GifSection = () => {
   return (
     <section 
-      className="relative w-full h-screen text-white font-sans flex select-none overflow-hidden p-8 md:p-16"
+      className="relative w-full min-h-screen lg:h-screen text-white font-sans flex flex-col lg:flex-row select-none overflow-hidden p-6 md:p-12 lg:p-16 gap-12 lg:gap-0"
       style={{
-        // Menggunakan hitam pekat/solid dengan sedikit nuansa charcoal premium
         backgroundColor: '#0A0A0A',
       }}
     >
@@ -18,13 +17,13 @@ const GifSection = () => {
       />
       
       {/* === KIRI: INFORMASI UTAMA === */}
-      <div className="w-1/2 flex flex-col justify-between h-full pr-8 relative z-10">
+      <div className="w-full lg:w-1/2 flex flex-col justify-between gap-8 lg:gap-0 h-auto lg:h-full lg:pr-8 relative z-10">
         {/* Atas */}
         <div>
           <p className="text-sm md:text-base font-normal tracking-wide opacity-60">
             Primary English Font
           </p>
-          <h1 className="text-7xl md:text-9xl font-bold tracking-tight mt-2">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mt-2">
             Inter
           </h1>
         </div>
@@ -56,36 +55,36 @@ const GifSection = () => {
       </div>
 
       {/* === KANAN: GRID LAYOUT UNTUK FONT WEIGHT === */}
-      <div className="w-1/2 flex h-full relative border-l border-white/20 z-10">
+      <div className="w-full lg:w-1/2 flex h-[350px] sm:h-[450px] lg:h-full relative border-t lg:border-t-0 lg:border-l border-white/20 z-10 pt-6 lg:pt-0">
         
         {/* Kolom 1: Thin */}
-        <div className="flex-1 flex flex-col justify-between border-r border-white/20 h-full relative overflow-hidden pl-4 py-2">
-          <span className="text-sm md:text-base font-thin opacity-50">Thin</span>
-          <span className="text-[12rem] md:text-[24rem] font-thin absolute -bottom-16 -left-12 leading-none select-none pointer-events-none opacity-40">
+        <div className="flex-1 flex flex-col justify-between border-r border-white/20 h-full relative overflow-hidden pl-2 sm:pl-4 py-2">
+          <span className="text-xs sm:text-sm md:text-base font-thin opacity-50">Thin</span>
+          <span className="text-[6rem] sm:text-[10rem] md:text-[12rem] lg:text-[18rem] xl:text-[24rem] font-thin absolute -bottom-8 sm:-bottom-16 -left-4 sm:-left-12 leading-none select-none pointer-events-none opacity-40">
             a
           </span>
         </div>
 
         {/* Kolom 2: Light */}
-        <div className="flex-1 flex flex-col justify-between border-r border-white/20 h-full relative overflow-hidden pl-4 py-2">
-          <span className="text-sm md:text-base font-light opacity-50">Light</span>
-          <span className="text-[12rem] md:text-[24rem] font-light absolute -bottom-16 -left-12 leading-none select-none pointer-events-none opacity-60">
+        <div className="flex-1 flex flex-col justify-between border-r border-white/20 h-full relative overflow-hidden pl-2 sm:pl-4 py-2">
+          <span className="text-xs sm:text-sm md:text-base font-light opacity-50">Light</span>
+          <span className="text-[6rem] sm:text-[10rem] md:text-[12rem] lg:text-[18rem] xl:text-[24rem] font-light absolute -bottom-8 sm:-bottom-16 -left-4 sm:-left-12 leading-none select-none pointer-events-none opacity-60">
             a
           </span>
         </div>
 
         {/* Kolom 3: Regular */}
-        <div className="flex-1 flex flex-col justify-between border-r border-white/20 h-full relative overflow-hidden pl-4 py-2">
-          <span className="text-sm md:text-base font-normal opacity-60">Regular</span>
-          <span className="text-[12rem] md:text-[24rem] font-normal absolute -bottom-16 -left-12 leading-none select-none pointer-events-none opacity-80">
+        <div className="flex-1 flex flex-col justify-between border-r border-white/20 h-full relative overflow-hidden pl-2 sm:pl-4 py-2">
+          <span className="text-xs sm:text-sm md:text-base font-normal opacity-60">Regular</span>
+          <span className="text-[6rem] sm:text-[10rem] md:text-[12rem] lg:text-[18rem] xl:text-[24rem] font-normal absolute -bottom-8 sm:-bottom-16 -left-4 sm:-left-12 leading-none select-none pointer-events-none opacity-80">
             a
           </span>
         </div>
 
         {/* Kolom 4: Bold */}
-        <div className="flex-1 flex flex-col justify-between h-full relative overflow-hidden pl-4 py-2">
-          <span className="text-sm md:text-base font-bold">Bold</span>
-          <span className="text-[16rem] md:text-[32rem] font-bold absolute -bottom-24 -left-16 leading-none z-10 select-none pointer-events-none">
+        <div className="flex-1 flex flex-col justify-between h-full relative overflow-hidden pl-2 sm:pl-4 py-2">
+          <span className="text-xs sm:text-sm md:text-base font-bold">Bold</span>
+          <span className="text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[24rem] xl:text-[32rem] font-bold absolute -bottom-12 sm:-bottom-24 -left-6 sm:-left-16 leading-none z-10 select-none pointer-events-none">
             a
           </span>
         </div>
