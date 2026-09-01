@@ -8,12 +8,12 @@ const MentionShowcase = () => {
       <section className="relative w-full bg-white px-8 md:px-16 lg:px-24 py-20 md:py-32">
         
         {/* Top Bar */}
-        <div className="flex justify-between items-start mb-12 md:mb-16">
-          <p className="text-xs md:text-sm text-gray-600 font-['Inter']">
-            Creative Presentation
+        <div className="flex justify-between items-start text-xs md:text-sm font-medium tracking-wider uppercase text-neutral-600 font-sans select-none mb-12 md:mb-16">
+          <p>
+            TECH ENTHUSIAST
           </p>
-          <p className="text-xs md:text-sm text-gray-600 font-['Inter']">
-            09 Jan, 2026
+          <p>
+            09 FEB 2026
           </p>
         </div>
 

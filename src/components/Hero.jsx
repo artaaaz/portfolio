@@ -26,8 +26,8 @@ const Hero = () => {
           </svg>
         </div>
 
-        <p className="text-xs text-gray-500 mb-1">09 Jan, 2026</p>
-        <h3 className="text-sm font-bold text-[#1a1a1a] mb-1">Social Media</h3>
+        <p className="text-xs text-gray-500 mb-1">09 FEB 2026</p>
+        <h3 className="text-sm font-bold text-[#1a1a1a] mb-1">Tech Entusiast</h3>
         <p className="text-xs text-gray-600">By: Erlangga Artha</p>
       </motion.div>
 

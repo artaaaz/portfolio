@@ -11,10 +11,10 @@ const BrandingCover = () => {
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex justify-between items-start text-sm text-gray-400 font-['Inter']"
+          className="flex justify-between items-start text-xs md:text-sm font-medium tracking-wider uppercase text-neutral-400 font-sans select-none"
         >
-          <span>Creative Presentation</span>
-          <span>09 Jan, 2026</span>
+          <span>TECH ENTHUSIAST</span>
+          <span>09 FEB 2026</span>
         </motion.div>
       </div>
 

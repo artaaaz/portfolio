@@ -35,10 +35,10 @@ const Tools = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex justify-between items-start text-sm text-gray-600 font-['Inter'] mb-12 md:mb-20"
+          className="flex justify-between items-start text-xs md:text-sm font-medium tracking-wider uppercase text-neutral-600 font-sans select-none mb-12 md:mb-20"
         >
-          <span>Creative Presentation</span>
-          <span>09 Jan, 2026</span>
+          <span>TECH ENTHUSIAST</span>
+          <span>09 FEB 2026</span>
         </motion.div>
       </div>
 

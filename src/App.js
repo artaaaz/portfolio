@@ -16,8 +16,11 @@ import AwardsSection from './components/AwardSection';
 import AppsShowcase from './components/AppsShowcase';
 import ProjectHighlights from './components/ProjectHighlights';
 import DesignWorks from './components/DesignWorks';
+import UIUXWorks from './components/UIUXWorks';
 import Showreel from './components/Showreel';
+import Footer from './components/Footer';
 import GifSection from './components/GifSection';
+import MentionStory from './components/MentionStory';
 
 // Main Content Component
 function AppContent() {
@@ -55,12 +58,12 @@ function AppContent() {
             <Inside />
             <BrandingCover />
             <MentionShowcase />
-            <MentionVisuals />
-            <GifSection />
+            <MentionStory />
             <AwardsSection />
-            <AppsShowcase />
+            <UIUXWorks />
             <DesignWorks />
             <Showreel />
+            <Footer />
           </div>
         </div>
       )}

@@ -1,73 +1,434 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const ProjectModal = ({ project, onClose }) => {
-    // Listen for Escape key press and lock background scrolling
-    useEffect(() => {
-        if (!project) return;
+  // =====================================================
+  // LOCK BODY SCROLL SAAT MODAL TERBUKA
+  // =====================================================
 
-        const handleKeyDown = (e) => {
-            if (e.key === 'Escape') {
-                onClose();
-            }
-        };
+  useEffect(() => {
+    if (!project) return;
 
-        const originalStyle = window.getComputedStyle(document.body).overflow;
-        document.body.style.overflow = 'hidden';
+    const originalOverflow = document.body.style.overflow;
 
-        window.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = "hidden";
 
-        return () => {
-            document.body.style.overflow = originalStyle;
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [project, onClose]);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [project]);
 
-    if (!project) return null;
+  // =====================================================
+  // CLOSE DENGAN ESC
+  // =====================================================
 
-    return (
-        <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  if (!project) return null;
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 md:p-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      onClick={onClose}
+    >
+      {/* =================================================
+          MODAL CONTAINER
+      ================================================= */}
+
+      <motion.div
+        className="
+          relative
+          w-full
+          max-w-6xl
+          max-h-[92vh]
+          overflow-y-auto
+          bg-white
+          rounded-[24px]
+          shadow-2xl
+          scrollbar-thin
+          scrollbar-thumb-neutral-400
+          scrollbar-track-transparent
+        "
+        initial={{
+          opacity: 0,
+          scale: 0.94,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          y: 0,
+        }}
+        exit={{
+          opacity: 0,
+          scale: 0.94,
+          y: 20,
+        }}
+        transition={{
+          duration: 0.3,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        onClick={(event) => event.stopPropagation()}
+      >
+        {/* =================================================
+            CLOSE BUTTON
+        ================================================= */}
+
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close project"
+          className="
+            absolute
+            top-6
+            right-6
+            z-20
+            flex
+            items-center
+            justify-center
+            w-11
+            h-11
+            rounded-full
+            bg-white
+            border
+            border-neutral-200
+            text-neutral-900
+            text-2xl
+            transition-all
+            duration-300
+            hover:bg-black
+            hover:text-white
+            hover:border-black
+          "
         >
-            <motion.div
-                className="relative bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
-                initial={{ scale: 0.95, y: 30 }}
-                animate={{ scale: 1, y: 0 }}
-                exit={{ scale: 0.95, y: 30 }}
-                onClick={(e) => e.stopPropagation()}
+          ×
+        </button>
+
+        {/* =================================================
+            PROJECT IMAGE
+            HANYA MUNCUL KALAU IMAGE ADA
+        ================================================= */}
+
+        {project.image && (
+          <div
+            className="
+              w-full
+              aspect-[16/8]
+              bg-neutral-100
+              overflow-hidden
+              rounded-t-[24px]
+            "
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              className="
+                w-full
+                h-full
+                object-cover
+                block
+              "
+            />
+          </div>
+        )}
+
+        {/* =================================================
+            PROJECT CONTENT
+        ================================================= */}
+
+        <div
+          className={`
+            w-full
+            px-6
+            md:px-10
+            lg:px-14
+            py-8
+            md:py-10
+            ${project.image ? "" : "pt-20 md:pt-20"}
+          `}
+        >
+          {/* =================================================
+              TOP META
+          ================================================= */}
+
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+            {/* DATE */}
+
+            <span
+              className="
+                font-mono
+                text-xs
+                md:text-sm
+                uppercase
+                tracking-widest
+                text-neutral-400
+              "
             >
-                <button 
-                    onClick={onClose} 
-                    className="absolute top-4 right-4 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#831514] hover:text-white transition-colors z-10 text-lg font-bold"
-                    aria-label="Close modal"
+              {project.date || project.year}
+            </span>
+
+            {/* CATEGORY */}
+
+            <span
+              className="
+                inline-flex
+                w-fit
+                font-mono
+                text-[10px]
+                md:text-xs
+                uppercase
+                tracking-widest
+                text-[#2147ff]
+                border
+                border-[#2147ff]/20
+                bg-[#2147ff]/5
+                px-3
+                py-2
+              "
+            >
+              {project.category}
+            </span>
+          </div>
+
+          {/* =================================================
+              TITLE
+          ================================================= */}
+
+          <h2
+            className="
+              text-4xl
+              md:text-6xl
+              lg:text-7xl
+              font-black
+              uppercase
+              tracking-tighter
+              leading-[0.9]
+              text-[#1a1a1a]
+              max-w-5xl
+              mb-8
+            "
+          >
+            {project.title}
+          </h2>
+
+          {/* =================================================
+              DESCRIPTION / INTRO
+          ================================================= */}
+
+          {project.description && (
+            <div className="max-w-3xl mb-10">
+              <p
+                className="
+                  text-base
+                  md:text-lg
+                  leading-relaxed
+                  text-neutral-600
+                  font-normal
+                "
+              >
+                {project.description}
+              </p>
+            </div>
+          )}
+
+          {/* =================================================
+              PROJECT INFO
+          ================================================= */}
+
+          <div
+            className="
+              grid
+              grid-cols-1
+              md:grid-cols-2
+              gap-8
+              border-t
+              border-neutral-200
+              pt-8
+            "
+          >
+            {/* TOOLS */}
+
+            {project.tools && (
+              <div>
+                <p
+                  className="
+                    font-mono
+                    text-[10px]
+                    uppercase
+                    tracking-widest
+                    text-neutral-400
+                    mb-3
+                  "
                 >
-                    ✕
-                </button>
-                <div className="aspect-video bg-gray-100 overflow-hidden">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                  Tools / Stack
+                </p>
+
+                <p
+                  className="
+                    text-sm
+                    md:text-base
+                    font-medium
+                    text-neutral-900
+                  "
+                >
+                  {Array.isArray(project.tools)
+                    ? project.tools.join(" • ")
+                    : project.tools}
+                </p>
+              </div>
+            )}
+
+            {/* CATEGORY */}
+
+            {project.category && (
+              <div>
+                <p
+                  className="
+                    font-mono
+                    text-[10px]
+                    uppercase
+                    tracking-widest
+                    text-neutral-400
+                    mb-3
+                  "
+                >
+                  Category
+                </p>
+
+                <p
+                  className="
+                    text-sm
+                    md:text-base
+                    font-medium
+                    text-neutral-900
+                  "
+                >
+                  {project.category}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* =================================================
+              CASE STUDY DEEP-DIVE (OVERVIEW, CHALLENGE, PROCESS, SOLUTION, RESULT)
+          ================================================= */}
+
+          {(project.overview ||
+            project.challenge ||
+            project.process ||
+            project.solution ||
+            project.result) && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-neutral-200 pt-8 mt-8">
+              {project.overview && (
+                <div className="md:col-span-2">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
+                    01 / Overview
+                  </p>
+                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
+                    {project.overview}
+                  </p>
                 </div>
-                <div className="p-6 md:p-8">
-                    <span className="text-xs font-bold text-[#831514] uppercase tracking-widest">{project.category || 'Project'}</span>
-                    <h2 className="text-2xl md:text-4xl font-serif font-bold text-black mt-2 mb-4 leading-tight">{project.title}</h2>
-                    <p className="text-gray-600 leading-relaxed mb-6 text-sm md:text-base">{project.description}</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm border-t border-gray-200 pt-6">
-                        <div>
-                            <span className="font-bold text-black block mb-1">Tools Used</span>
-                            <span className="text-gray-600">{project.tools || 'N/A'}</span>
-                        </div>
-                        <div>
-                            <span className="font-bold text-black block mb-1">Year</span>
-                            <span className="text-gray-600">{project.year || 'N/A'}</span>
-                        </div>
-                    </div>
+              )}
+
+              {project.challenge && (
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
+                    02 / Challenge
+                  </p>
+                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
+                    {project.challenge}
+                  </p>
                 </div>
-            </motion.div>
-        </motion.div>
-    );
+              )}
+
+              {project.process && (
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
+                    03 / Process
+                  </p>
+                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
+                    {project.process}
+                  </p>
+                </div>
+              )}
+
+              {project.solution && (
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
+                    04 / Solution
+                  </p>
+                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
+                    {project.solution}
+                  </p>
+                </div>
+              )}
+
+              {project.result && (
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
+                    05 / Result
+                  </p>
+                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
+                    {project.result}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* =================================================
+              GITHUB / PROJECT LINK
+          ================================================= */}
+
+          {project.github && (
+            <div className="mt-10">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  inline-flex
+                  items-center
+                  gap-3
+                  px-5
+                  py-3
+                  bg-[#1a1a1a]
+                  text-white
+                  font-mono
+                  text-xs
+                  uppercase
+                  tracking-widest
+                  transition-all
+                  duration-300
+                  hover:bg-[#2147ff]
+                "
+                onClick={(event) => event.stopPropagation()}
+              >
+                View Project
+                <span className="text-lg">↗</span>
+              </a>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
 };
 
 export default ProjectModal;

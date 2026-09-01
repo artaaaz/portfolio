@@ -14,9 +14,9 @@ const Inside = () => {
       
       {/* === TOP INFO BAR === */}
       <div className="w-full">
-        <div className="flex justify-between items-start text-sm text-gray-600 font-['Inter'] mb-12 md:mb-16">
-          <span>Creative Presentation</span>
-          <span>09 Jan, 2026</span>
+        <div className="flex justify-between items-start text-xs md:text-sm font-medium tracking-wider uppercase text-neutral-600 font-sans select-none mb-12 md:mb-16">
+          <span>TECH ENTHUSIAST</span>
+          <span>09 FEB 2026</span>
         </div>
       </div>
 
