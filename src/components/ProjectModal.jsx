@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { lockScroll, unlockScroll } from "../lib/smoothScroll";
 
 const ProjectModal = ({ project, onClose }) => {
   // =====================================================
@@ -12,9 +13,11 @@ const ProjectModal = ({ project, onClose }) => {
     const originalOverflow = document.body.style.overflow;
 
     document.body.style.overflow = "hidden";
+    lockScroll(); // hentikan smooth scroll halaman
 
     return () => {
       document.body.style.overflow = originalOverflow;
+      unlockScroll();
     };
   }, [project]);
 
@@ -40,6 +43,7 @@ const ProjectModal = ({ project, onClose }) => {
 
   return (
     <motion.div
+      data-lenis-prevent
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 md:p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -210,6 +214,23 @@ const ProjectModal = ({ project, onClose }) => {
               TITLE
           ================================================= */}
 
+          {/* KICKER (mis. "The Making of Mention") + BADGE PENGHARGAAN */}
+
+          {(project.kicker || project.badge) && (
+            <div className="mb-5 flex flex-wrap items-center gap-3">
+              {project.kicker && (
+                <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 md:text-sm">
+                  {project.kicker}
+                </span>
+              )}
+              {project.badge && (
+                <span className="rounded-full bg-[#2147ff] px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-white md:text-xs">
+                  {project.badge}
+                </span>
+              )}
+            </div>
+          )}
+
           <h2
             className="
               text-4xl
@@ -276,7 +297,7 @@ const ProjectModal = ({ project, onClose }) => {
                     mb-3
                   "
                 >
-                  Tools / Stack
+                  {project.toolsLabel || "Tools / Stack"}
                 </p>
 
                 <p
@@ -329,66 +350,67 @@ const ProjectModal = ({ project, onClose }) => {
               CASE STUDY DEEP-DIVE (OVERVIEW, CHALLENGE, PROCESS, SOLUTION, RESULT)
           ================================================= */}
 
-          {(project.overview ||
-            project.challenge ||
-            project.process ||
-            project.solution ||
-            project.result) && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-neutral-200 pt-8 mt-8">
-              {project.overview && (
-                <div className="md:col-span-2">
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
-                    01 / Overview
-                  </p>
-                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
-                    {project.overview}
-                  </p>
-                </div>
-              )}
+          {(() => {
+            const sections = [
+              ["Overview", project.overview, true],
+              ["Challenge", project.challenge],
+              ["Process", project.process],
+              ["Solution", project.solution],
+              ["Result", project.result],
+            ].filter(([, text]) => text);
+            if (!sections.length) return null;
+            return (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-neutral-200 pt-8 mt-8">
+                {sections.map(([label, text, wide], i) => (
+                  <div key={label} className={wide ? "md:col-span-2" : ""}>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
+                      {String(i + 1).padStart(2, "0")} / {label}
+                    </p>
+                    <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">{text}</p>
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
 
-              {project.challenge && (
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
-                    02 / Challenge
-                  </p>
-                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
-                    {project.challenge}
-                  </p>
-                </div>
-              )}
+          {/* =================================================
+              DELIVERABLES
+          ================================================= */}
 
-              {project.process && (
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
-                    03 / Process
-                  </p>
-                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
-                    {project.process}
-                  </p>
-                </div>
-              )}
+          {project.deliverables?.length > 0 && (
+            <div className="mt-8 border-t border-neutral-200 pt-8">
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-neutral-400">Deliverables</p>
+              <ul className="flex flex-wrap gap-2">
+                {project.deliverables.map((d) => (
+                  <li key={d} className="rounded-full border border-neutral-300 px-3 py-1.5 text-sm text-neutral-800">
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-              {project.solution && (
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
-                    04 / Solution
-                  </p>
-                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
-                    {project.solution}
-                  </p>
-                </div>
-              )}
+          {/* =================================================
+              GALLERY (foto tambahan)
+          ================================================= */}
 
-              {project.result && (
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#2147ff] font-semibold mb-2">
-                    05 / Result
-                  </p>
-                  <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-normal">
-                    {project.result}
-                  </p>
-                </div>
-              )}
+          {project.gallery?.length > 0 && (
+            <div className="mt-8 border-t border-neutral-200 pt-8">
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+                {project.galleryLabel || "Gallery"}
+              </p>
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+                {project.gallery.map((src, i) => (
+                  <div key={src} className="aspect-[3/4] overflow-hidden rounded-2xl bg-neutral-100">
+                    <img
+                      src={src}
+                      alt={`${project.title} ${i + 1}`}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
@@ -420,7 +442,7 @@ const ProjectModal = ({ project, onClose }) => {
                 "
                 onClick={(event) => event.stopPropagation()}
               >
-                View Project
+                {project.linkLabel || "View Project"}
                 <span className="text-lg">↗</span>
               </a>
             </div>
