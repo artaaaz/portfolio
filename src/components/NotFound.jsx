@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#f4f1ea] text-center px-4">
-            <h1 className="text-8xl md:text-9xl font-serif text-[#831514] mb-4">404</h1>
-            <p className="text-2xl font-bold text-gray-800 mb-2">Page not found.</p>
-            <p className="text-gray-500 mb-8">The creative journey continues elsewhere.</p>
-            <Link to="/" className="px-8 py-3 bg-[#831514] text-white font-bold rounded-lg hover:bg-[#5a0e0e] transition-colors">
-                ← Back to Portfolio
+        <div className="min-h-screen flex flex-col items-start justify-end bg-paper text-ink p-5 md:p-10">
+            <p className="label text-muted mb-4">Error</p>
+            <h1 className="text-[30vw] md:text-[20vw] font-semibold leading-[0.8] tracking-[-0.05em]">404</h1>
+            <p className="mt-6 text-2xl font-medium tracking-tight">Page not found.</p>
+            <Link to="/" className="pill pill-dark mt-8">
+                ← Back to portfolio
             </Link>
         </div>
     );

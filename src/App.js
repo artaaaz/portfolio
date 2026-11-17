@@ -1,84 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
+import { MotionConfig } from "framer-motion";
 
-// Import Components
-import Hero from './components/Hero';
-import About from './components/About';
-import Loader from './components/Loader';
-import NotFound from './components/NotFound';
-import Services from './components/Services';
-import Tools from './components/Tools';
-import Inside from './components/Inside';
-import BrandingCover from './components/BrandingCover';
-import MentionShowcase from './components/MentionShowcase';
-import MentionVisuals from './components/MentionVisuals';
-import AwardsSection from './components/AwardSection';
-import AppsShowcase from './components/AppsShowcase';
-import ProjectHighlights from './components/ProjectHighlights';
-import DesignWorks from './components/DesignWorks';
-import UIUXWorks from './components/UIUXWorks';
-import Showreel from './components/Showreel';
-import Footer from './components/Footer';
-import GifSection from './components/GifSection';
-import MentionStory from './components/MentionStory';
+import NotFound from "./components/NotFound";
+import Preloader from "./components/site/Preloader";
+import Header from "./components/site/Header";
+import Hero from "./components/site/Hero";
+import About from "./components/site/About";
+import Work from "./components/site/Work";
+import Services from "./components/site/Services";
+import Reel from "./components/site/Reel";
+import Contact from "./components/site/Contact";
+import ScrollIndicator from "./components/site/ScrollIndicator";
+import ProjectsPage from "./components/site/ProjectsPage";
+import ProjectDetail from "./components/site/ProjectDetail";
+import PageLine from "./components/site/PageLine";
+import { scrollToTarget, useSmoothScroll } from "./lib/smoothScroll";
+import { PageTransitionProvider } from "./lib/pageTransition";
 
-// Main Content Component
-function AppContent() {
-  const [isLoading, setIsLoading] = useState(true);
-
+function Home() {
+  // Datang dari halaman lain dengan link seperti "/#work": scroll ke section itu
+  // setelah konten selesai dirender.
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
+    const { hash } = window.location;
+    if (!hash || hash === "#top") return;
+    const t = setTimeout(() => {
+      const el = document.querySelector(hash);
+      if (el) scrollToTarget(el, { immediate: true });
+    }, 400);
+    return () => clearTimeout(t);
   }, []);
 
   return (
-    <>
-      <Loader isLoading={isLoading} />
-
-      {!isLoading && (
-        <div className="grain-overlay min-h-screen bg-transparent relative z-0">
-
-          {/* SVG Filter */}
-          <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
-            <defs>
-              <filter id="roughen">
-                <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
-              </filter>
-            </defs>
-          </svg>
-
-          {/* CONTENT */}
-          <div className="relative z-10">
-            <Hero />
-
+    <MotionConfig reducedMotion="user">
+      <Preloader />
+      <Header />
+      <ScrollIndicator />
+      <main>
+        <Hero />
+        {/* Garis meliuk berjalan di belakang semua section dari About sampai Reel */}
+        <div className="relative">
+          <PageLine />
+          <div className="relative">
             <About />
             <Services />
-            <Tools />
-            <Inside />
-            <BrandingCover />
-            <MentionShowcase />
-            <MentionStory />
-            <AwardsSection />
-            <UIUXWorks />
-            <DesignWorks />
-            <Showreel />
-            <Footer />
+            <Work />
+            <Reel />
           </div>
         </div>
-      )}
-    </>
+      </main>
+      <Contact />
+    </MotionConfig>
   );
 }
 
-// Router Wrapper
+// key = id: pindah dari satu project ke project lain memasang ulang halaman
+// (animasi judul & progress "Next project" mulai dari awal).
+function ProjectDetailRoute() {
+  const { id } = useParams();
+  return <ProjectDetail key={id} />;
+}
+
 function App() {
+  useSmoothScroll();
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<AppContent />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {/* Transisi antar halaman (panel menyapu dari kanan) */}
+      <PageTransitionProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:id" element={<ProjectDetailRoute />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </PageTransitionProvider>
     </Router>
   );
 }
